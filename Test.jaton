@@ -1,0 +1,27 @@
+class Main {
+
+    double ch = 4 - 2-3-4*2*3*4>34;
+    char ch[] = new double[10];
+
+    void f1() {
+        ;
+        char a = 11;
+        {
+            ;
+            {}{}{}
+        }
+        while('g') {
+            ;
+        }
+        a = 3;
+    }
+
+    public static void main() {
+        double a[];
+        double a[] = new double[30];
+        a = new double[400];
+        #b = 20;
+        f1();
+        c[2] = 40 + a * c[3] == (20);
+    }
+}
