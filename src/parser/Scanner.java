@@ -73,7 +73,7 @@ public class Scanner {
         String str = "" + text.charAt(numberSymbol);
         addNumberSymbol();
         while (isIdSymbol(text.charAt(numberSymbol)) || isDigit(text.charAt(numberSymbol))) {
-            str += str text.charAt(numberSymbol);
+            str += text.charAt(numberSymbol);
             addNumberSymbol();
         }
         if (str.equals("public"))

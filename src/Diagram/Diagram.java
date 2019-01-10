@@ -230,8 +230,12 @@ public class Diagram {
 
         if (token.getType() == TokenType.SEMICOLON)
             nextToken(TokenType.SEMICOLON, "Ожидался символ ;");
-        else if (isOperatorsAndDate(token))
+        else if (isOperatorsAndDate(token)) {
+            saveTree = thisTree;
+            thisTree.setLeft(Node.createEmptyNode());
+            thisTree = thisTree.left;
             operatorsAndDate();
+        }
         else if (isLoopWhile(token))
             loopWhile();
         else if (token.getType() == TokenType.ID) {
