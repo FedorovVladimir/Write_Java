@@ -12,6 +12,10 @@ public class Node {
         isInit = false;
     }
 
+    public TypeObject getTypeObject() {
+        return typeObject;
+    }
+
     public static Node createVar(String name, TypeData typeData) {
         Node node = new Node();
         node.typeObject = TypeObject.VAR;

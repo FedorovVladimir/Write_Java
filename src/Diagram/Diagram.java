@@ -3,15 +3,19 @@ package Diagram;
 import objects.Node;
 import objects.ProgramTree;
 import objects.TypeData;
+import objects.TypeObject;
 import parser.Scanner;
 import parser.Token;
 import parser.TokenType;
+
+import java.util.Deque;
+import java.util.LinkedList;
 
 public class Diagram {
 
     private ProgramTree tree;
     private ProgramTree thisTree;
-    private ProgramTree saveTree;
+    private Deque<ProgramTree> stack = new LinkedList<>();
 
     private Scanner scanner;
 
@@ -99,12 +103,16 @@ public class Diagram {
         nextToken(TokenType.CLOSE_CURLY_BRACE, "Ожидался символ }");
     }
     private void in() {
-        saveTree = thisTree;
+        stack.push(thisTree);
         thisTree.setRight(Node.createEmptyNode());
         thisTree = thisTree.right;
     }
     private void out() {
-        thisTree = saveTree;
+        thisTree = stack.pop();
+        if (thisTree.node.getTypeObject() == TypeObject.EMPTY) {
+            thisTree.setLeft(Node.createEmptyNode());
+            thisTree = thisTree.left;
+        }
     }
 
 
@@ -231,9 +239,6 @@ public class Diagram {
         if (token.getType() == TokenType.SEMICOLON)
             nextToken(TokenType.SEMICOLON, "Ожидался символ ;");
         else if (isOperatorsAndDate(token)) {
-            saveTree = thisTree;
-            thisTree.setLeft(Node.createEmptyNode());
-            thisTree = thisTree.left;
             operatorsAndDate();
         }
         else if (isLoopWhile(token))

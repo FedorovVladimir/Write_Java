@@ -15,6 +15,11 @@ class Main {
         }
         while('g') {
             ;
+            while('a') {
+                while('s') {
+                    char aaa = 10;
+                }
+            }
         }
         #a = 3;
     }
