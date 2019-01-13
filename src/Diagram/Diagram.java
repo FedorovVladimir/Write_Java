@@ -88,17 +88,24 @@ public class Diagram {
         nextToken(TokenType.OPEN_CURLY_BRACE, "Ожидался символ {");
 
         in();
+        boolean find = false;
         Token token = nextTokenRead();
         while (token.getType() != TokenType.CLOSE_CURLY_BRACE && token.getType() != TokenType.EOF) {
-            if (isOperator(token))
+            if (isOperator(token)) {
+                find = true;
                 operator();
-            else if (isDate(token))
+            }
+            else if (isDate(token)) {
+                find = true;
                 date();
+            }
             else
                 printError("Неизвестный символ");
             token = nextTokenRead();
         }
-
+        if (!find) {
+            printError("Недостижимый код");
+        }
         out();
         nextToken(TokenType.CLOSE_CURLY_BRACE, "Ожидался символ }");
     }
